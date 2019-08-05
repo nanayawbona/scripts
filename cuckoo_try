@@ -188,3 +188,11 @@ Cuckoo User History
    41  cuckoo -d
    42  history
    43  history
+   
+   
+   
+   
+   
+   VBoxManage hostonlyif ipconfig vboxnet0 --ip 192.168.56.1 --netmask 255.255.255.0
+   
+   https://arnaudloos.com/2019/cuckoo-sandbox-installation/

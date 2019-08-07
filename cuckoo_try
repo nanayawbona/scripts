@@ -1,7 +1,7 @@
 yum clean all
 yum groupinstall -y "Development tools"
-yum install -y epel zlib.x86_64 zlib-devel openssl-devel sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-dev zlib-devel.x86_64 wget libjpeg-turbo.x86_64 libjpeg-turbo-devel.x86_64 libjpeg-turbo-utils.x86_64  zlib-devel libjpeg-dev
-yum install -y zlib-devel openssl-devel sqlite-devel bzip2-devel xzlibs zlib1g-dev swig openssl-devel mlocate sqlite-devel python-virtualenv.noarch python2-pip.noarch sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-devel python-pip bzip2-devel  xzlibs openssl-devel
+yum install -y epel-* zlib.x86_64 tcpdump zlib-devel openssl-devel sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-dev zlib-devel.x86_64 wget libjpeg-turbo.x86_64 libjpeg-turbo-devel.x86_64 libjpeg-turbo-utils.x86_64  zlib-devel libjpeg-dev
+yum install -y zlib-devel vim openssl-devel sqlite-devel bzip2-devel xzlibs zlib1g-dev swig openssl-devel mlocate sqlite-devel python-virtualenv.noarch python2-pip.noarch sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-devel python-pip bzip2-devel  xzlibs openssl-devel
 yum group install "Gnome Desktop" -y
 systemctl set-default graphical.target
 yum install epel-* -y

@@ -1,194 +1,32 @@
+yum clean all
 yum groupinstall -y "Development tools"
 yum install -y epel zlib.x86_64 zlib-devel openssl-devel sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-dev zlib-devel.x86_64 wget libjpeg-turbo.x86_64 libjpeg-turbo-devel.x86_64 libjpeg-turbo-utils.x86_64  zlib-devel libjpeg-dev
-yum install -y zlib-devel openssl-devel sqlite-devel bzip2-devel xzlibs zlib1g-dev swig openssl-devel mlocate sqlite-devel python-virtualenv.noarch python2-pip.noarch sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-devel python-pip bzip2-devel  xzlibs openssl-devel 
+yum install -y zlib-devel openssl-devel sqlite-devel bzip2-devel xzlibs zlib1g-dev swig openssl-devel mlocate sqlite-devel python-virtualenv.noarch python2-pip.noarch sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-devel python-pip bzip2-devel  xzlibs openssl-devel
+yum group install "Gnome Desktop" -y
+systemctl set-default graphical.target
+yum install epel-* -y
+yum install -y mlocate -y
+yum --enablerepo=epel install dkms -y
+yum install kernel-devel -y
 wget https://download.virtualbox.org/virtualbox/5.2.32/VirtualBox-5.2-5.2.32_132073_el7-1.x86_64.rpm
-yum localinstall VirtualBox-5.2-5.2.32_132073_el7-1.x86_64.rpm
-useradd cuckoo   
+yum localinstall VirtualBox-5.2-5.2.32_132073_el7-1.x86_64.rpm -y
+useradd -G vboxusers cuckoo  
 passwd cuckoo
-usermod -a -G vboxusers cuckoo
-usermod -a -G wheel cuckoo
-vi /etc/security/limits.conf
+cat >> /etc/security/limits.conf << EOF
 *         hard    nofile      500000
 *         soft    nofile      500000
 root      hard    nofile      500000
 root      soft    nofile      500000
-logout
+EOF
+yum update -y
+reboot
+cd ~cuckoo/ 
+virtualenv cuckoo_env
+chown -R cuckoo:cuckoo cuckoo_env/*
 
+pip install -U pip setuptools
+pip install -U cuckoo
 
-
-lyum groupinstall -y development
-    7  yum install -y 
-    8  yum groupinstall -y development
-    9  yum install -y 
-   10  yum install python-pip
-   11  yum list python-pi*
-   12  yum list *pip*
-   13  yum install epel
-   14  yum install epel
-   15  yum install epel8
-   16  yum install epel8*
-   17  yum install epel*
-   18  yum list available | grep *pip*
-   19  yum list
-   20  yum list | grep pip
-   21  yum install python2-pip.noarch
-   22  yum list python-vi*
-   23  yum install python-virtualenv.noarch
-   24  python --version
-   25  yum install -y libjpeg-dev zlib1g-dev swig
-   26  yum list | grep zlib
-   27  yum list | grep libjpeg
-   28  yum install -y zlib.x86_64 zlib-devel.x86_64 libjpeg-turbo.x86_64 libjpeg-turbo-devel.x86_64 libj
-   29  yum install -y wet
-   30  yum install -y wget
-   31  wget https://download.virtualbox.org/virtualbox/5.2.32/VirtualBox-5.2-5.2.32_132073_el7-1.x86_64.
-   32  yum local install VirtualBox-5.2-5.2.32_132073_el7-1.x86_64.rpm
-   33  yum localinstall VirtualBox-5.2-5.2.32_132073_el7-1.x86_64.rpm
-   34  useradd cuckoo
-   35  passwd cuckoo
-   36  usermod -a -G vboxusers cuckoo
-   37  vi /etc/security/limits.conf
-   38  logout
-   39  usermod -a -G wheel cuckoo
-   40  su - cuckoo
-   41  yum install mandb
-   42  yum install -y mlocate
-   43  mandb
-   44  l
-   45  locate cuckoo
-   46  updatedb
-   47  locate cuckoo
-   48  cd /home/cuckoo/cuckoo/bin
-   49  su - cuckoo
-   50  histry
-   51  history
-
-
-
-
-
-
-
-
-CUCKO History
-****************
-(cuckoo_env) [cuckoo@server1 cuckoo]$ history
-    1  cd /opt/cuckoo/
-    2  ll
-    3  cd ..
-    4  ll
-    5  cd cuckoo/
-    6  ll
-    7  virtualenv cuckoo_env
-    8  . cuckoo_env/bin/activate
-    9  pip install -U pip setuptools && pip install -U cuckoo
-   10  ls
-   11  pwd
-   12  cuckoo -d
-   13  rpm -qa | box
-   14  locate cuckoo
-   15  history
-
-
-
-
-
-ROOT History
-***************
-[root@server1 ~]# history
-    1  service network restart
-    2  yum update -y
-    3  reboot
-    4  nmtuit
-    5  nmtui
-    6  bash
-    7  yum update -y
-    8  ip ad
-    9  nmtui
-   10  service nework restart
-   11  systemctl restart network
-   12  yum update -y
-   13  pkill -9 yum
-   14  yum update -y
-   15  passwd
-   16  reboot
-   17  nmtui
-   18  ip add
-   19  yum groupinstall -y "Development tools"
-   20  yum install -y epel zlib.x86_64 zlib-devel openssl-devel sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-dev zlib-devel.x86_64 wget libjpeg-turbo.x86_64 libjpeg-turbo-devel.x86_64 libjpeg-turbo-utils.x86_64  zlib-devel libjpeg-dev
-   21  yum install -y zlib-devel openssl-devel sqlite-devel bzip2-devel xzlibs zlib1g-dev swig openssl-devel mlocate sqlite-devel python-virtualenv.noarch python2-pip.noarch sqlite-devel bzip2-devel xzlibs libxslt-devel libxml2-devel python-pip bzip2-devel  xzlibs openssl-devel
-   22  wget https://download.virtualbox.org/virtualbox/5.2.32/VirtualBox-5.2-5.2.32_132073_el7-1.x86_64.rpm
-   23  yum localinstall VirtualBox-5.2-5.2.32_132073_el7-1.x86_64.rpm
-   24  useradd cuckoo
-   25  passwd cuckoo
-   26  useradd cuckoo
-   27  usermod -a -G vboxusers cuckoo
-   28  usermod -a -G wheel cuckoo
-   29  usermod -a -G vboxusers cuckoo
-   30  vi /etc/security/limits.conf
-   31  logout
-   32  yum install epel-*
-   33  mkdir /opt/cuckoo
-   34  chmod -R 755 /opt/cuckoo/
-   37  chown -R cuckoo:cuckoo /opt/cuckoo/
-   40  virtualenv cuckoo_env
-   41  . cuckoo_env/bin/activate
-   42  su - cuckoo
-   43  pwd
-   44  rpm -qa | grep Virt
-   45  yum update VirtualBox-5.2-5.2.32_132073_el7-1.x86_64
-   46  history
-
-
-
-
-
-Cuckoo User History
-******************
-1  mkdir /opt/vms
-    2  cd /opt/vms/
-    3  sudo mkdir /opt/vms
-    4  cd /opt/vms/
-    5  ll
-    6  chmod 755 /opt/vms
-    7  sudo chmod 755 /opt/vms
-    8  sudo virtenv cuckoo_env
-    9  sudo virtualenv cuckoo_env
-   10  chown cuckoo:cuckoo /opt/vms/cuckoo_env/
-   11  sudo chown cuckoo:cuckoo /opt/vms/cuckoo_env/
-   12  ll
-   13  source /opt/vms/cuckoo_env/bin/activate
-   14  pip install -r requirements.txt
-   15  cd cuckoo_env/
-   16  pip install -r requirements.txt
-   17  ls
-   18  cd bin
-   19  cd ..
-   20  pip install cuckoo
-   21  sudo pip install cuckoo
-   22  pip install -U pip setuptools
-   23  ls
-   24  cd /opt/vms
-   25  ll
-   26  cd cuckoo_env/
-   27  ll
-   28  cd bin/
-   29  ll
-   30  source ./activate
-   31  cd ..
-   32  ll
-   33  cd ..
-   34  ll
-   35  cd cuckoo_env/
-   36  pip install -U pip setuptools
-   37  pip install -U cuckoo
-   38  ll
-   39  cd bin
-   40  ll
-   41  cuckoo -d
-   42  history
-   43  history
-   
    
    
    

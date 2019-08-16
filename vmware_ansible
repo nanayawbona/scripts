@@ -1,0 +1,62 @@
+---
+# create a new VM from a template
+- name: VM from template
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  vars:
+    vcenter_server: "infvcsa.mgmt1.ddenet.local"
+    vcenter_datacenter: "Datacenter"
+    vcenter_cluster: "Cluster"
+    vcenter_datastore: "DDE-VM-NFS-01"
+    vcenter_host: "infesxi1.mgmt1.ddenet.local"
+    vcenter_network: "VLAN104-10.1.104.0_23"
+  vars_prompt:
+   - name: vcenter_username
+     prompt: Enter the UserName
+     private: no
+   - name: vcenter_password
+     prompt: Enter the Password
+     private: yes
+   - name: vm_state
+     prompt: State as - present/absent/poweredon/poweredoff/restarted
+     default: poweredon
+     private: no
+  tasks:
+    - name: Create a Rhel 7.6 virtual machine from a template
+      vmware_guest:
+        hostname: "{{ vcenter_server }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        esxi_hostname: "{{ vcenter_host }}"
+        validate_certs: False
+        folder: Templates/RHEL
+        name: ansible-deployed-v2
+        state: "{{ vm_state }}"
+        template: ansible-E1E
+        disk:
+         - size_gb: "{{ disk_size | default(80) }}"
+           type: thin
+           datastore: "{{ vcenter_datastore }}"
+        hardware:
+          memory_mb: 2048
+          num_cpus: 2
+          scsi: lsilogicsas
+          version: 13 # Hardware version of virtual machine
+        networks:
+          - name: "{{ vcenter_network }}"
+            device_type: "vmxnet3"
+            type: static
+            ip: 10.1.104.60
+            gateway: 10.1.104.1
+            netmask: 255.255.255.0
+        wait_for_ip_address: true
+        customization:
+           hostname: edge-node0002
+           dns_servers:
+             - 10.0.11.110
+           domain: "idm.ddenet.local"
+           timezone: 255
+      delegate_to: localhost
+      register: rhel7_deploy

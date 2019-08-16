@@ -5,11 +5,11 @@
   gather_facts: false
   connection: local
   vars:
-    vcenter_server: "infvcsa.mgmt1.ddenet.local"
+    vcenter_server: "vcenter url"
     vcenter_datacenter: "Datacenter"
     vcenter_cluster: "Cluster"
     vcenter_datastore: "DDE-VM-NFS-01"
-    vcenter_host: "infesxi1.mgmt1.ddenet.local"
+    vcenter_host: "host on vcenterl"
     vcenter_network: "VLAN104-10.1.104.0_23"
   vars_prompt:
    - name: vcenter_username
@@ -56,7 +56,7 @@
            hostname: edge-node0002
            dns_servers:
              - 10.0.11.110
-           domain: "idm.ddenet.local"
+           domain: ""
            timezone: 255
       delegate_to: localhost
       register: rhel7_deploy
